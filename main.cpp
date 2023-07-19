@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
+#include <cmath>
 #include <vector>
+#include <array>
+#include "Point.hpp"
 
 int subtract (int x, int y){
   return x-y;
@@ -27,7 +30,7 @@ class Circle
 };
 
 //Problem1
-
+/*
 class Point{
   public:
     double x;
@@ -37,12 +40,14 @@ class Point{
     return sqrt(x * x + y * y);
   }
 
-  double distance_to_point(const Point other) {
+  double distance_to_point(const Point& other) {
       double dx = x - other.x;
       double dy = y - other.y;
       return std::sqrt(dx * dx + dy * dy);
   }
 };
+
+*/
 
 class Line{
   public:
@@ -51,12 +56,12 @@ class Line{
     double distance_of_line() {
       return p1.distance_to_point(p2);
     }
-  /* skipping 5 for now
-    double distance_to_point(const Point other)){
-      
-      
-    }
-    */
+  // 4
+   /* double distance_to_point2(const Line other) {
+        double point = other.p1
+        return 0;
+    }*/
+    
 };
 
 class Triangle{
@@ -64,9 +69,9 @@ class Triangle{
     Point p1, p2, p3;
     
     double area(Point p1, Point p2, Point p3) {
-      double side1 = sqrt (pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-      double side2 = sqrt (pow(p2.x - p3.x, 2) + pow(p2.y - p3.y, 2));
-      double side3 = sqrt (pow(p3.x - p1.x, 2) + pow(p3.y - p1.y, 2));
+      double side1 = sqrt (pow(p1.X) - p2.X(), 2) + pow(p1.Y() - p2.Y(), 2));
+      double side2 = sqrt (pow(p2.X() - p3.X(), 2) + pow(p2.Y() - p3.Y), 2));
+      double side3 = sqrt (pow(p3.X() - p1.X(), 2) + pow(p3.Y() - p1.Y(), 2));
       double semi = (side1 + side2 + side3) / 2;
     return sqrt ( semi * (semi - side1) * (semi - side2) * (semi - side3));
     }
@@ -100,21 +105,48 @@ public:
   }
 } ;
 
+
 class AUV {
+private:
+    std::string name;
+    Point position;
+    double depth;
+    double heading;
+    std::array<double, 3> speed; 
+    double angular_speed;
+   
   public:
-  std::string name;
-  Point position;
-  double depth;
-  double heading;
-  array <double> speed;
-  double angular_speed;
-  double speed;
 
-  double step ()
-  
-  
+  AUV(std::string n, Point p, double d, double h, array <double,3> )
 
-}
+
+     void step(const double$ dt) {
+        
+        position.x() += speed[0] * dt; // Forward movement
+        position.y() += speed[1] * dt; // Lateral movement
+        depth += speed[2] * dt; // Vertical movement
+
+        heading += angular_speed * dt;
+
+       
+    }
+
+    void apply_acceleration(std::array<double, 3> acceleration, double dt) {
+        
+        speed[0] += acceleration[0] * dt; // Forward acceleration
+        speed[1] += acceleration[1] * dt; // Lateral acceleration
+        speed[2] += acceleration[2] * dt; // Vertical acceleration
+    }
+
+    void apply_angular_acceleration(double angular_acceleration, double dt) {
+        
+        angular_speed += angular_acceleration * dt;
+
+    }
+};
+
+
+
 
 
 int main()
