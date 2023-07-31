@@ -2,7 +2,7 @@
 #include <math.h>
 #include <cmath>
 #include <vector>
-#include <array>
+#include <array> 
 #include "Point.hpp"
 
 int subtract (int x, int y){
@@ -47,6 +47,7 @@ class Point{
   }
 };
 
+
 */
 
 class Line{
@@ -69,8 +70,8 @@ class Triangle{
     Point p1, p2, p3;
     
     double area(Point p1, Point p2, Point p3) {
-      double side1 = sqrt (pow(p1.X) - p2.X(), 2) + pow(p1.Y() - p2.Y(), 2));
-      double side2 = sqrt (pow(p2.X() - p3.X(), 2) + pow(p2.Y() - p3.Y), 2));
+      double side1 = sqrt (pow(p1.X() - p2.X(), 2) + pow(p1.Y() - p2.Y(), 2));
+      double side2 = sqrt (pow(p2.X() - p3.X(), 2) + pow(p2.Y() - p3.Y(), 2));
       double side3 = sqrt (pow(p3.X() - p1.X(), 2) + pow(p3.Y() - p1.Y(), 2));
       double semi = (side1 + side2 + side3) / 2;
     return sqrt ( semi * (semi - side1) * (semi - side2) * (semi - side3));
@@ -115,15 +116,22 @@ private:
     std::array<double, 3> speed; 
     double angular_speed;
    
-  public:
+  
 
-  AUV(std::string n, Point p, double d, double h, array <double,3> )
+  AUV(std::string n, Point p, double d, double h, array<double, 3> s, double angular_speed, double a_s) {
+    name = n;
+    position = p;
+    depth = d;
+    heading = h;
+    speed = s;
+    angular_speed = a_s;
+  }
 
 
-     void step(const double$ dt) {
+     void step(const double& dt) {
         
-        position.x() += speed[0] * dt; // Forward movement
-        position.y() += speed[1] * dt; // Lateral movement
+        position.x += speed[0] * dt; // Forward movement
+        position.y += speed[1] * dt; // Lateral movement
         depth += speed[2] * dt; // Vertical movement
 
         heading += angular_speed * dt;
